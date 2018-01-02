@@ -1,0 +1,56 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#include<map>
+#include<stack>
+#include<queue>
+#include<list>
+#include<cmath>
+#include<string>
+using namespace std;
+#define ll long long
+#define f(j,n) for(int i=j;i<n;i++)
+#define ff(k,n) for(int j=k;j<n;j++)
+#define faster  ios_base::sync_with_stdio(false); cin.tie(NULL)
+vector<string> kk;
+void allpermut(string str,int pos,string temp,bool *visited)
+{ 
+
+	if (pos== str.length())
+	{
+		kk.push_back(temp);
+		return;
+	}
+
+	   f(0, str.length())
+	   {
+		   if (!visited[i])
+		     {
+			   visited[i] = true;
+			   temp[pos] = str[i];
+			   allpermut(str, pos + 1, temp, visited);
+			   visited[i] = false;
+
+		     }
+	    }
+
+
+}
+int main()
+{
+	faster;
+
+	string p;
+	cin >> p;
+
+	bool *visited = new bool[p.length()];
+	f(0, p.length())
+		visited[i] = false;
+
+	allpermut(p, 0, p, visited);
+	f(0, kk.size())
+		cout << kk[i] << "\n";
+
+
+	return 0;
+}
